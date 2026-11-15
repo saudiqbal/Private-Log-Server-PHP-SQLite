@@ -59,9 +59,9 @@ if(empty($data['message']))
 }
 $title = isset($data['title']) ? GlobalXSSFilter($data['title']) : NULL;
 $message = isset($data['message']) ? GlobalXSSFilter($data['message']) : NULL;
-if (isset($_GET['priority']))
+if (isset($data['priority']))
 {
-	$priority = $_GET['priority'];
+	$priority = $data['priority'];
 	if(preg_match('/[^a-zA-Z0-9\s]/', $priority))
 	{
 		echo 'Error: J0P6-B2NO-DRYC-Z768-CQOW-Y8C1';
