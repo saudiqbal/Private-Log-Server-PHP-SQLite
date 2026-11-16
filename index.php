@@ -142,10 +142,11 @@ return diskcode;
 	<a href="https://www.github.com">Other Services</a>
 </div>
 </div>
+<form action="index.php" method="POST" style="display: inline-flex;vertical-align: middle;align-items: center;line-height: 14px;"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form>
 <input class="menu-btn" type="checkbox" id="menu-btn" />
 <label class="menu-icon" for="menu-btn"><span class="navicon"></span> </label>
 <ul class="menu">
-<li><a href="/">Home</a></li>
+<li><a href="./">Home</a></li>
 </ul>
 </div>
 <div class="content">
@@ -161,9 +162,28 @@ return diskcode;
 </thead>
 <tbody>
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
+	$searchTerm = $_GET['search'];
+	$searchTerm = trim($searchTerm);
+	$searchactive = true;
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+	$searchTerm = $_POST['search'];
+	$searchTerm = trim($searchTerm);
+	$searchactive = true;
+}
 $db = new PDO("sqlite:db/EventLog.db");
-$result = $db->query("SELECT rowid FROM EventTable");
-$rows = $result->fetchAll();
+if (($searchactive ?? false) === true)
+{
+	$result = $db->prepare('SELECT Title, Message FROM EventTable WHERE Title LIKE :search OR Message LIKE :search');
+	$result->execute([':search' => '%' . $searchTerm . '%']);
+	$rows = $result->fetchAll(PDO::FETCH_ASSOC);
+}
+else
+{
+	$result = $db->query("SELECT rowid FROM EventTable");
+	$rows = $result->fetchAll();
+}
 $total_pages = count($rows);
 $limit = 25;
 $adjacents = 3;
@@ -182,7 +202,16 @@ else
 $start = 0;
 $i = 1;
 //now output the data to a simple html table...
-$result = $db->query("SELECT Title, Message, Date, IP, User, P FROM EventTable ORDER BY rowid DESC LIMIT '$start', '$limit'");
+if (($searchactive ?? false) === true)
+{
+	$result = $db->prepare('SELECT Title, Message, Date, IP, User, P FROM EventTable WHERE Title LIKE :search OR Message LIKE :search ORDER BY Date DESC LIMIT '.$start.', '.$limit.'');
+	$result->execute([':search' => '%' . $searchTerm . '%']);
+	$result = $result->fetchAll(PDO::FETCH_ASSOC);
+}
+else
+{
+	$result = $db->query("SELECT Title, Message, Date, IP, User, P FROM EventTable ORDER BY rowid DESC LIMIT '$start', '$limit'");
+}
 
 foreach($result as $row) {
 if(isset($row['P']))
@@ -370,7 +399,21 @@ echo "\n</div>";
 echo "\n</div>\n";
 echo "<nav class=\"pagination_keyboard\">\n";
 echo "<div class=\"pagination_style\">\n";
-echo pagination($total_pages,$limit,$page,$_SERVER["PHP_SELF"]."?page=",$adjacents);
+if (($searchactive ?? false) === true)
+{
+	echo pagination($total_pages,$limit,$page,$_SERVER["PHP_SELF"]."?search=$searchTerm&page=",$adjacents);
+}
+else
+{
+	echo pagination($total_pages,$limit,$page,$_SERVER["PHP_SELF"]."?page=",$adjacents);
+}
+if(empty($rows))
+{
+echo '<div id="WarningMainContent">
+<div id="Warningalignleft"><svg width="20" height="20"><path style="fill:#ffe2c3" d="M19.64 16.36 11.53 2.3A1.85 1.85 0 0 0 10 1.21 1.85 1.85 0 0 0 8.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/></svg></div>
+<div id="Warningalignright">No results were found for your search query!</div>
+</div>';
+}
 echo "</div>\n";
 echo "</nav>\n";
 ?>
