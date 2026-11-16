@@ -145,7 +145,7 @@ return diskcode;
 <form action="index.php" method="POST" style="display: inline-flex;vertical-align: middle;align-items: center;line-height: 14px;"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form>
 <input class="menu-btn" type="checkbox" id="menu-btn" />
 <label class="menu-icon" for="menu-btn"><span class="navicon"></span> </label>
-<ul class="menu">
+<ul class="headermenulinks">
 <li><a href="./">Home</a></li>
 </ul>
 </div>
