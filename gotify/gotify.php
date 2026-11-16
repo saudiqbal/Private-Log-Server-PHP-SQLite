@@ -5,6 +5,23 @@ if($_SERVER['HTTPS'] != 'on')
 	exit;
 }
 
+function GlobalXSSFilter($param)
+{
+	$custom_entities = array(
+	'&' => '&amp;',
+	'"' => '&quot;',
+	"'" => '&apos;',
+	'/' => '&sol;',
+	'<' => '&lt;',
+	'>' => '&gt;',
+	'\\' => '&bsol;'
+	);
+	$param = strtr($param, $custom_entities);
+	$normal_characters = 'a-zA-Z0-9\s`~!@#$\€\£\¥%^&*()_+-={}|:;<>?,.\/\"\'\\\[\]\r\n\f\v';
+	$param = preg_replace("/[^$normal_characters]/", '', $param);
+	return $param;
+}
+
 $token = $_GET['token'] ?? null;
 $authentication_status = false;
 
@@ -46,9 +63,8 @@ Authenticated:
 $jsonData = file_get_contents('php://input');
 // Decode the JSON data into a PHP associative array
 $data = json_decode($jsonData, true);
-$title = isset($data['title']) ? $data['title'] : NULL;
-$message = isset($data['message']) ? $data['message'] : NULL;
-//$priority = isset($data['priority']) && preg_match('/[^a-zA-Z0-9\s]/', $data['priority']) ? $data['priority'] : NULL;
+$title = isset($data['title']) ? GlobalXSSFilter($data['title']) : NULL;
+$message = isset($data['message']) ? GlobalXSSFilter($data['message']) : NULL;
 if (isset($data['priority']))
 {
 	$priority = $data['priority'];
