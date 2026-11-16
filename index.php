@@ -261,8 +261,7 @@ echo "</div>
 </div>
 </div>
 </td>
-</tr>
-</div>\n";
+</tr>\n";
 }
 echo "</div>";
 // echo $result->fetchColumn(1);
