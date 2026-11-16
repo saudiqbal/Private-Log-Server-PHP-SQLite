@@ -150,17 +150,6 @@ return diskcode;
 </ul>
 </div>
 <div class="content">
-<div class="table-wrapper">
-<table id="serverDataTable">
-<thead style="cursor: pointer;">
-<tr id="DataTableTitle">
-<th style="width: 10px;"></th>
-<th>Status</th>
-<th>Timestamp</th>
-<th>IP</th>
-</tr>
-</thead>
-<tbody>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
 	$searchTerm = $_GET['search'];
@@ -185,6 +174,21 @@ else
 	$rows = $result->fetchAll();
 }
 $total_pages = count($rows);
+if(!empty($rows))
+{
+echo <<<HTML
+<div class="table-wrapper">
+<table id="serverDataTable">
+<thead style="cursor: pointer;">
+<tr id="DataTableTitle">
+<th style="width: 10px;"></th>
+<th>Status</th>
+<th>Timestamp</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+HTML;
 $limit = 25;
 $adjacents = 3;
 if(isset($_GET['page']))
@@ -407,11 +411,12 @@ else
 {
 	echo pagination($total_pages,$limit,$page,$_SERVER["PHP_SELF"]."?page=",$adjacents);
 }
-if(empty($rows))
+}
+else
 {
 echo '<div id="WarningMainContent">
 <div id="Warningalignleft"><svg width="20" height="20"><path style="fill:#ffe2c3" d="M19.64 16.36 11.53 2.3A1.85 1.85 0 0 0 10 1.21 1.85 1.85 0 0 0 8.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/></svg></div>
-<div id="Warningalignright">No results were found for your search query!</div>
+<div id="Warningalignright">No record or data was found in the database!</div>
 </div>';
 }
 echo "</div>\n";
