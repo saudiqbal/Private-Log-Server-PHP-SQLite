@@ -222,8 +222,7 @@ echo "</td>
 <div class=\"detail-content\">
 <div class=\"detail-inner\">
 <pre>".$row["Message"]."</pre>
----
-<br>";
+<hr class=\"hr-style\">";
 echo date('l, F d Y, h:i:s A', $row['Date']) . $priority . $user;
 echo "</div>
 </div>
