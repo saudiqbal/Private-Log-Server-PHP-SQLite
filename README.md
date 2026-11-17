@@ -3,7 +3,9 @@
 Main article https://saudiqbal.github.io/PHP/Private-Log-Server-PHP-SQLite-Self-Hosted.html
 
 [2026-11-17] Added dark theme
+
 [2026-11-16] Added search functionality
+
 [2026-11-15] Initial commit
 
 ## Screenshots
