@@ -637,4 +637,37 @@ body{
 background: #121212;
 color: #E0E0E0;
 }
+.table-wrapper {
+	background: #212121;
+	color: #dadada;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.table-wrapper th, td {
+	border-bottom: 1px solid #bec3ca;
+}
+.table-wrapper th {
+	background: #353638;
+}
+.main-row:hover,
+.main-row:focus-visible {
+	background-color: #353638;
+}
+.main-row[aria-expanded="true"] {
+	background-color: #5a5c5f;
+}
+.detail-wrapper {
+	background: #353638;
+}
+.detail-row.open td {
+	border-bottom: 1px solid #505050;
+}
+hr.hr-style{
+border:0;
+height:1px;
+background-image:-webkit-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255.75),rgba(255,255,255,0));
+background-image:-moz-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255.75),rgba(255,255,255,0));
+background-image:-ms-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255.75),rgba(255,255,255,0));
+background-image:-o-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255.75),rgba(255,255,255,0));
+margin:0px;
+}
 }
