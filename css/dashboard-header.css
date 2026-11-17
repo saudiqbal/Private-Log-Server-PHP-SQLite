@@ -588,9 +588,22 @@ display: none;
 }
 /* ===== MOBILE ===== */
 @media screen and (max-width: 640px) {
+.header {
+display: block;
+}
+.header ul {
+display: block;
+position: relative;
+z-index: 4;
+}
+.header li a {
+display: block;
+height: 40px;
+background-color: #1a1a1a;
+}
 .content {
-	margin: 0 auto;
-	max-width: 100%;
+margin: 0 auto;
+max-width: 100%;
 }
 .pagination_style
 {
