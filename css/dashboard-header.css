@@ -45,6 +45,7 @@ gap: 1rem;
 }
 .nav-link:hover {
 color: #ffffff;
+text-shadow: 0 0 3px #ffffff;
 }
 /* Navbar Container End */
 .search-input {
