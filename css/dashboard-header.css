@@ -3,8 +3,8 @@ margin:0px;
 padding:0px;
 background-color: #ededed;
 }
-/* Navbar Container */
-.navbar {
+/* Navbar Container Start */
+.commonnavbar {
 height: 40px;
 line-height: 40px;
 display: flex;
@@ -22,14 +22,16 @@ font-weight: 500;
 text-decoration: none;
 }
 /* Desktop Menu */
-.nav-menu {
-display: flex;
-list-style: none;
-gap: 2rem;
-}
 .nav-left,
 .nav-right {
 display: flex;
+}
+.nav-menu-btn {
+display: none;
+font-size: 1rem;
+background: none;
+border: none;
+cursor: pointer;
 }
 .nav-link {
 color: #cbd5e1;
@@ -37,24 +39,14 @@ text-decoration: none;
 font-size: 1rem;
 transition: color 0.2s ease;
 }
+.navlinks {
+display: flex;
+gap: 1rem;
+}
 .nav-link:hover {
 color: #ffffff;
 }
-/* Hamburger Button (Hidden on Desktop) */
-.nav-toggle {
-display: none;
-flex-direction: column;
-gap: 5px;
-background: transparent;
-border: none;
-cursor: pointer;
-}
-.bar {
-width: 25px;
-height: 3px;
-background-color: #ffffff;
-transition: all 0.3s ease;
-}
+/* Navbar Container End */
 .search-input {
 margin: 0px 10px;
 width: 150px;
@@ -463,38 +455,24 @@ opacity: 1;
 }
 /* ===== MOBILE ===== */
 @media screen and (max-width: 640px) {
-.nav-toggle {
-display: flex;
+.nav-menu-btn {
+display: block;
+color: #cbd5e1;
 }
-.nav-menu {
+.navlinks {
+display: none;
+flex-direction: column;
 position: absolute;
 top: 100%;
 left: 0;
-width: 100%;
+right: 0;
+padding: 10px;
 background-color: #6b6b6b;
-flex-direction: column;
-align-items: center;
-gap: 1.5rem;
-margin: 0;
-padding: 0;
-max-height: 0;
-overflow: hidden;
-transition: max-height 0.3s ease, padding 0.3s ease;
+z-index: 5;
 }
-/* Active State Toggled via JS */
-.nav-menu.active {
-max-height: 300px;
-padding: 1.5rem 0;
-}
-/* Optional Hamburger to "X" Animation */
-.nav-toggle.active .bar:nth-child(1) {
-transform: translateY(8px) rotate(45deg);
-}
-.nav-toggle.active .bar:nth-child(2) {
-opacity: 0;
-}
-.nav-toggle.active .bar:nth-child(3) {
-transform: translateY(-8px) rotate(-45deg);
+.navlinks.open {
+display: flex;
+z-index: 5;
 }
 .content {
 margin: 0 auto;
