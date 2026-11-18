@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
 $db = new PDO("sqlite:db/EventLog.db");
 if (($searchactive ?? false) === true)
 {
-	$result = $db->prepare('SELECT Title, Message, IP FROM EventTable WHERE Title LIKE :search OR Message LIKE :search OR IP LIKE :search');
+	$result = $db->prepare('SELECT Title, Message, IP FROM EventTable WHERE Title LIKE :search OR Message LIKE :search OR IP LIKE :search OR User LIKE :search');
 	$result->execute([':search' => '%' . $searchTerm . '%']);
 	$rows = $result->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -211,7 +211,7 @@ $i = 1;
 //now output the data to a simple html table...
 if (($searchactive ?? false) === true)
 {
-	$result = $db->prepare('SELECT Title, Message, Date, IP, User, P FROM EventTable WHERE Title LIKE :search OR Message LIKE :search OR IP LIKE :search ORDER BY Date DESC LIMIT '.$start.', '.$limit.'');
+	$result = $db->prepare('SELECT Title, Message, Date, IP, User, P FROM EventTable WHERE Title LIKE :search OR Message LIKE :search OR IP LIKE :search OR User LIKE :search ORDER BY Date DESC LIMIT '.$start.', '.$limit.'');
 	$result->execute([':search' => '%' . $searchTerm . '%']);
 	$result = $result->fetchAll(PDO::FETCH_ASSOC);
 }
