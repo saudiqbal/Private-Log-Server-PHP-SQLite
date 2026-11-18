@@ -133,22 +133,29 @@ return diskcode;
 </script>
 </head>
 <body>
-<div class="header">
+<nav class="navbar">
+<div class="nav-left">
 <div class="dropdownClickable">
-<span class="headerlogo dropbtnClickable">Log Server</span>
+<span class="dropbtnClickable">Log Server</span>
 <div class="dropdownClickable-content">
-	<a href="https://www.google.com">Google</a>
-	<a href="https://www.youtube.com">YouTube</a>
-	<a href="https://www.github.com">Other Services</a>
+<a href="https://www.google.com">Google</a>
+<a href="https://www.youtube.com">YouTube</a>
+<a href="https://www.github.com">Other Services</a>
 </div>
 </div>
-<form action="index.php" method="POST" style="display: inline-flex;vertical-align: middle;align-items: center;line-height: 14px;"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form>
-<input class="menu-btn" type="checkbox" id="menu-btn" />
-<label class="menu-icon" for="menu-btn"><span class="navicon"></span> </label>
-<ul class="headermenulinks">
-<li><a href="./">Home</a></li>
+<form action="index.php" method="POST"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form>
+</div>
+<div class="nav-right">
+<button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
+</button>
+<ul class="nav-menu" id="nav-menu">
+<li class="nav-item"><a href="./" class="nav-link">Home</a></li>
 </ul>
 </div>
+</nav>
 <div class="content">
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
