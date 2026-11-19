@@ -143,7 +143,7 @@ return diskcode;
 <a href="https://www.github.com">Other Services</a>
 </div>
 </div>
-<form action="index.php" method="POST"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form>
+<form action="index.php" method="GET"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form>
 </div>
 <div class="nav-right">
 <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="18" x2="20" y2="18" /></svg></button>
