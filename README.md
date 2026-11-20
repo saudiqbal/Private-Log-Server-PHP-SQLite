@@ -1,6 +1,8 @@
 # Private Log Server using PHP SQLite for Self Hosting
 
-Main article https://saudiqbal.github.io/PHP/Private-Log-Server-PHP-SQLite-Self-Hosted.html
+Main article: https://saudiqbal.github.io/PHP/Private-Log-Server-PHP-SQLite-Self-Hosted.html
+
+Demo: https://saudiqbal.github.io/PHP/LogServerExample.html
 
 [2026-11-17] Added dark theme
 
