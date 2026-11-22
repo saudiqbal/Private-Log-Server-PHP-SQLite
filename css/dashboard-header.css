@@ -1,4 +1,7 @@
-body{
+html {
+scrollbar-gutter: stable;
+}
+body {
 margin:0px;
 padding:0px;
 background-color: #ededed;
